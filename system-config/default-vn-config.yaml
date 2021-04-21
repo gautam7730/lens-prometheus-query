@@ -1,0 +1,43 @@
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: BGPRouter
+metadata:
+  namespace: default-project
+  name: bgprouter-sample
+  annotations:
+    core.juniper.net/display-name: Sample BGP Router
+    core.juniper.net/description:
+      Represents configuration of BGP peers. All the BGP peers involved in
+      Contrail system are under default Routing Instance of the default
+      Virtual Network.
+spec:
+  parent:
+    apiVersion: core.contrail.juniper.net/v1alpha1
+    kind: RoutingInstance
+    namespace: default-project
+    name: routinginstance-sample
+  bgpRouterParameters:
+    vendor: contrail
+    routerType: control-node
+    address: 10.0.0.25
+    identifier: 10.0.0.25
+    addressFamilies:
+      family:
+        - route-target
+        - inet-vpn
+        - e-vpn
+        - erm-vpn
+  bgpRouterReferences:
+    - apiVersion: core.contrail.juniper.net/v1alpha1
+      kind: BGPRouter
+      namespace: default-project
+      name: bgprouter-sample2
+      attributes:
+        session:
+          - attributes:
+            - addressFamilies:
+                family:
+                  - route-target
+                  - inet-vpn
+                  - e-vpn
+                  - erm-vpn
+                  - inet6-vpn

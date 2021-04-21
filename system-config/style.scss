@@ -1,0 +1,13 @@
+
+$background-color-stripe: hsl(0, 0%, 90%);
+$background-color-white: #ffffff;
+.edit-button{
+  float: right;
+  clear: both;
+}
+.table-row-light {
+   background-color: $background-color-stripe;
+}
+.table-row-dark {
+  background-color : $background-color-white;
+}
